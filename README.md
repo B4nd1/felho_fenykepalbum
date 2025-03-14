@@ -1,0 +1,2 @@
+# Fényképalbum Django
+
