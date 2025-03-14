@@ -1,0 +1,13 @@
+
+{% block title %}
+    Login user
+{% endblock %}
+
+{% block content %}
+    <h1>Login new user</h1>
+    <form class="form-with-validation" action="/users/login/" method="post">
+        {% csrf_token %}
+        {{ form }}
+        <button class="form-submit" type="submit">Login</button>
+    </form>
+{% endblock %}

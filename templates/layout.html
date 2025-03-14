@@ -20,9 +20,6 @@
         <a href="/users/login/">
             <span role="img" aria-label="Login" title="Login">Login</span>
         </a> |
-        <a href="/users/register/">
-            <span role="img" aria-label="Register" title="Register">Register</span>
-        </a> |
 
         {% if user.is_authenticated %}
             <a href="{% url 'posts:new-post' %}">
@@ -30,7 +27,7 @@
             </a> |
             <form class="logout" action="{% url 'users:logout' %}" method="post">
                 {% csrf_token %}
-                <button class="logout-button" aria-label="User Logout" title="User Logout">👋</button>
+                <button class="logout-button" aria-label="User Logout" title="User Logout">Logout</button>
             </form>
         {% else %}
             <a href="{% url 'users:register' %}">
