@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>
         {% block title %}
-            Django App
+            Django Images App
         {% endblock %}
     </title>
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
@@ -15,28 +15,19 @@
 <body>
     <nav>
         <a href="/">
-            <span role="img" aria-label="Images" title="Images">Images</span>
+            <span aria-label="Home" title="Home">Home</span>
+        </a> |
+        <a href="/images">
+            <span aria-label="Images" title="Images">Images</span>
         </a> |
         <a href="/users/login/">
-            <span role="img" aria-label="Login" title="Login">Login</span>
+            <span aria-label="Login" title="Login">Login</span>
         </a> |
+        <a href="/users/register/">
+            <span aria-label="Register" title="Login">Register</span>
+        </a>
 
-        {% if user.is_authenticated %}
-            <a href="{% url 'posts:new-post' %}">
-                <span role="img" aria-label="New Post" title="New Post">🆕</span>
-            </a> |
-            <form class="logout" action="{% url 'users:logout' %}" method="post">
-                {% csrf_token %}
-                <button class="logout-button" aria-label="User Logout" title="User Logout">Logout</button>
-            </form>
-        {% else %}
-            <a href="{% url 'users:register' %}">
-                <span role="img" aria-label="User Registration" title="User Registration">Register</span>
-            </a> |
-            <a href="{% url 'users:login' %}">
-                <span role="img" aria-label="User Login" title="User Login">Login</span>
-            </a>
-        {% endif %}
+
     </nav>
     <main>
         {% block content %}

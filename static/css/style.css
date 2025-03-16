@@ -6,17 +6,50 @@
 
 body {
     min-height: 100vh;
-    display: grid;
-    background-color: #f5f5f5;
-    font-family: 'Roboto', sans-serif;
-    font-size: 16px;
-    color: #333;
-    place-items: center;
+    background-color: black;
+    color: whitesmoke;
+    font-size: 3rem;
 }
 
-h1, p {
-    text-align: center;
-    font-size: 1.25rem;
+nav {
+    padding: 1rem;
+    background-color: #44B78B;
+    color: white;
+    font-size: 2.5rem;
+}
+
+main {
+    padding: 1rem;
+}
+
+section {
+    display: flex;
+    flex-flow: column;
+    gap: 1rem;
+}
+
+h1,
+h2 {
+    font-size: 2.5rem;
+}
+
+p {
+    font-size: 1rem;
+}
+
+a {
+    text-decoration: none;
+    color: #81dbb8;
+}
+
+a:hover {
+    opacity: .85;
+}
+
+.banner {
+    display: block;
+    width: 100%;
+    max-width: 800px;
 }
 
 .form-with-validation {
@@ -44,6 +77,25 @@ h1, p {
     border-radius: 10px;
     width: 125px;
 }
+
+.helptext {
+    font-size: 1rem;
+    margin-left: 1rem;
+}
+
+.helptext ul {
+    list-style-type: none;
+}
+
+.errorlist {
+    color: #F00;
+    margin-left: 2rem;
+}
+
+.errorlist li::marker {
+    content: '🚨 ';
+}
+
 
 .logout {
     display: inline-block;
