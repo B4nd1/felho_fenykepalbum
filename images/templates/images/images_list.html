@@ -2,6 +2,21 @@
 {% block title %}
     Images List
 {% endblock %}
+
 {% block content %}
-    <h1>Images List</h1>
+    <section>
+        <h1>Images</h1>
+
+        {% for image in images %}
+         <article class="image">
+             <h2>
+                 <a href ="{% url 'images:page' slug=image.slug %}">
+                    {{ image.title }}
+                 </a>
+             </h2>
+             <p style="font-size: 24px; margin-left: 50px;">  {{ image.date }} </p>
+             <p style="font-size: 24px; margin-top: 20px; margin-bottom: 30px">  {{ image.body }} </p>
+         </article>
+        {% endfor %}
+    </section>
 {% endblock %}

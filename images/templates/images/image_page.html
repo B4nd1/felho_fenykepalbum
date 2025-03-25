@@ -1,0 +1,17 @@
+{% extends 'layout.html' %}
+{% block title %}
+    {{ image.title }}
+{% endblock %}
+
+{% block content %}
+    <section>
+        <h1>{{ image.title }}</h1>
+        <p style="font-size: 24px; margin-left: 50px;">  {{ image.date }} </p>
+        <p style="font-size: 24px; margin-top: 20px; margin-bottom: 30px">  {{ image.body }} </p>
+        <img
+                class="banner"
+                src = "{{ image.banner.url }}"
+                alt = "{{ image.title }}"
+        />
+    </section>
+{% endblock %}
