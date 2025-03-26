@@ -4,24 +4,25 @@
 {% endblock %}
 
 {% block content %}
-    <section>
+    <section class="images-list">
         <h1>Images</h1>
-
-        {% for image in images %}
-         <article class="image">
-             <h2>
-                 <a href ="{% url 'images:page' slug=image.slug %}">
-                    {{ image.title }}
-                 </a>
-             </h2>
-             <img
-                class="banner"
-                src = "{{ image.banner.url }}"
-                alt = "{{ image.title }}"
-             />
-             <p style="font-size: 24px; margin-left: 50px;">  {{ image.date }} </p>
-             <p style="font-size: 24px; margin-top: 20px; margin-bottom: 30px">  {{ image.body }} </p>
-         </article>
-        {% endfor %}
+        <div class="image-grid">
+            {% for image in images %}
+                <article class="image-card">
+                    <a href="{% url 'images:page' slug=image.slug %}">
+                        <img
+                            class="banner"
+                            src="{{ image.banner.url }}"
+                            alt="{{ image.title }}"
+                        />
+                        <div class="image-card-content">
+                            <h2 class="image-card-title">{{ image.title }}</h2>
+                            <p class="image-card-date">{{ image.date }}</p>
+                            <p class="image-card-body">{{ image.body|truncatewords:20 }}</p>
+                        </div>
+                    </a>
+                </article>
+            {% endfor %}
+        </div>
     </section>
 {% endblock %}

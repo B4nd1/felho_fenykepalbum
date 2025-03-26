@@ -4,14 +4,14 @@
 {% endblock %}
 
 {% block content %}
-    <section>
-        <h1>{{ image.title }}</h1>
-        <p style="font-size: 24px; margin-left: 50px;">  {{ image.date }} </p>
-        <p style="font-size: 24px; margin-top: 20px; margin-bottom: 30px">  {{ image.body }} </p>
+    <section class="image-page">
+        <h1 class="image-title">{{ image.title }}</h1>
+        <p class="image-date">{{ image.date }}</p>
+        <p class="image-body">{{ image.body }}</p>
         <img
-                class="banner"
-                src = "{{ image.banner.url }}"
-                alt = "{{ image.title }}"
+            class="banner"
+            src="{{ image.banner.url }}"
+            alt="{{ image.title }}"
         />
     </section>
 {% endblock %}
