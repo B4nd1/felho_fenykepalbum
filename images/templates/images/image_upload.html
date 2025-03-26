@@ -1,0 +1,16 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+    Upload Image
+{% endblock %}
+
+{% block content %}
+    <section class="image-upload">
+        <h1>Upload New Image</h1>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Upload</button>
+        </form>
+    </section>
+{% endblock %}
