@@ -17,15 +17,21 @@
         <a href="/">
             <span aria-label="Home" title="Home">Home</span>
         </a> |
-        <a href="{% url 'images:list' %}">
-            <span aria-label="Images" title="Images">Images</span>
-        </a> |
-        <a href="/users/login/">
-            <span aria-label="Login" title="Login">Login</span>
-        </a> |
-        <a href="/users/register/">
-            <span aria-label="Register" title="Login">Register</span>
-        </a>
+        {% if user.is_authenticated %}
+            <a href="{% url 'images:list' %}">
+               <span aria-label="Images" title="Images">Images</span>
+            </a> |
+            <a href="{% url 'users:logout' %}">
+                <span aria-label="Logout" title="Logout">Logout</span>
+            </a>
+        {% else %}
+            <a href="{% url 'users:login' %}">
+                <span aria-label="Login" title="Login">Login</span>
+            </a> |
+            <a href="{% url 'users:register' %}">
+                <span aria-label="Register" title="Register">Register</span>
+            </a>
+        {% endif %}
     </nav>
     <main>
         {% block content %}
