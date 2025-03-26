@@ -5,6 +5,9 @@
 
 {% block content %}
     <section class="image-page">
+        <a href="{% url 'images:list' %}" class="back-button">
+            &larr; Back to Images
+        </a>
         <h1 class="image-title">{{ image.title }}</h1>
         <p class="image-date">{{ image.date }}</p>
         <p class="image-body">{{ image.body }}</p>
