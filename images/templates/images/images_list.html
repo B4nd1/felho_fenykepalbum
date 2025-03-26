@@ -9,19 +9,29 @@
         <div class="image-grid">
             {% for image in images %}
                 <article class="image-card">
-                    <a href="{% url 'images:page' slug=image.slug %}">
-                        <img
-                            class="banner"
-                            src="{{ image.banner.url }}"
-                            alt="{{ image.title }}"
-                        />
-                        <div class="image-card-content">
+                    <div class="image-card-header">
+                        <a href="{% url 'images:page' slug=image.slug %}">
+                            <img
+                                class="banner"
+                                src="{{ image.banner.url }}"
+                                alt="{{ image.title }}"
+                            />
+                        </a>
+                    </div>
+                    <div class="image-card-content">
+                        <a href="{% url 'images:page' slug=image.slug %}">
                             <h2 class="image-card-title">{{ image.title }}</h2>
                             <p class="image-card-date">{{ image.date }}
                                 Uploaded by: {{ image.author }}</p>
                             <p class="image-card-body">{{ image.body|truncatewords:20 }}</p>
-                        </div>
-                    </a>
+                        </a>
+                    </div>
+                    <div class="image-card-footer">
+                        <form method="post" action="{% url 'images:delete' slug=image.slug %}" onsubmit="return confirm('Are you sure you want to delete this image?');">
+                            {% csrf_token %}
+                            <button type="submit" class="delete-button">Delete</button>
+                        </form>
+                    </div>
                 </article>
             {% endfor %}
         </div>

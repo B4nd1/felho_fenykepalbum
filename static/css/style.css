@@ -99,6 +99,9 @@ p {
     object-fit: cover;
     border-bottom: 1px solid #eee;
 }
+.image-card-header{
+    position: relative;
+}
 
 .image-card-content {
     padding: 15px;
@@ -120,6 +123,9 @@ p {
     font-size: 1rem;
     color: #555;
     line-height: 1.4;
+}
+.image-card-footer{
+    padding: 10px;
 }
 
 .image-page {
