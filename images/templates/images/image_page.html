@@ -1,13 +1,22 @@
 {% extends 'layout.html' %}
+{% load static %}
 {% block title %}
     {{ image.title }}
 {% endblock %}
 
 {% block content %}
     <section class="image-page">
-        <a href="{% url 'images:list' %}" class="back-button">
-            &larr; Back to Images
-        </a>
+        <div class="button-row">
+            <a href="{% url 'images:list' %}" class="back-button">
+                &larr; Back to Images
+            </a>
+            <div class="delete-container">
+                <form method="post" action="{% url 'images:delete' slug=image.slug %}">
+                    {% csrf_token %}
+                    <button type="submit" class="delete-button">Delete Image</button>
+                </form>
+            </div>
+        </div>
         <h1 class="image-title">{{ image.title }}</h1>
         <p class="image-card-date">{{ image.date }}
                                 Uploaded by: {{ image.author }}</p>
