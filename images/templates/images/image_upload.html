@@ -1,4 +1,5 @@
 {% extends 'layout.html' %}
+{% load static %}
 
 {% block title %}
     Upload Image
@@ -6,11 +7,36 @@
 
 {% block content %}
     <section class="image-upload">
-        <h1>Upload New Image</h1>
-        <form method="post" enctype="multipart/form-data">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <button type="submit">Upload</button>
-        </form>
+        <div class="container">
+            <h1>Upload New Image</h1>
+            <form method="post" enctype="multipart/form-data" class="upload-form">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="{{ form.title.id_for_label }}">Title:</label>
+                    {{ form.title }}
+                    {% if form.title.errors %}
+                        <div class="error-message">{{ form.title.errors|join:", " }}</div>
+                    {% endif %}
+                </div>
+
+                <div class="form-group">
+                    <label for="{{ form.body.id_for_label }}">Description:</label>
+                    {{ form.body }}
+                    {% if form.body.errors %}
+                        <div class="error-message">{{ form.body.errors|join:", " }}</div>
+                    {% endif %}
+                </div>
+
+                <div class="form-group">
+                    <label for="{{ form.banner.id_for_label }}">Image:</label>
+                    {{ form.banner }}
+                    {% if form.banner.errors %}
+                        <div class="error-message">{{ form.banner.errors|join:", " }}</div>
+                    {% endif %}
+                </div>
+
+                <button type="submit" class="upload-button">Upload</button>
+            </form>
+        </div>
     </section>
 {% endblock %}

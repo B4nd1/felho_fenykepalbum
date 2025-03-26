@@ -1,13 +1,50 @@
 {% extends 'layout.html' %}
+{% load static %}
+{% load widget_tweaks %}
 {% block title %}
-    Register a new user
+    Register
 {% endblock %}
 
 {% block content %}
-    <h1>Register a new user</h1>
-    <form class="form-with-validation" action="/users/register/" method="post">
-        {% csrf_token %}
-        {{ form }}
-        <button class="form-submit" type="submit">Register</button>
-    </form>
+    <section class="auth-page">
+        <div class="container">
+            <h1>Register</h1>
+            <form method="post" class="auth-form">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="{{ form.username.id_for_label }}">Username:</label>
+                    {{ form.username }}
+                    {% if form.username.errors %}
+                        <div class="error-message">{{ form.username.errors|join:", " }}</div>
+                    {% endif %}
+                </div>
+
+                <div class="form-group">
+                    <label for="{{ form.password1.id_for_label }}">Password:</label>
+                    {{ form.password1|add_class:"tooltip-input" }}
+                    {% if form.password1.errors %}
+                        <div class="error-message">{{ form.password1.errors|join:", " }}</div>
+                    {% endif %}
+                </div>
+
+                <div class="form-group">
+                    <label for="{{ form.password2.id_for_label }}">Confirm Password:</label>
+                    {{ form.password2 }}
+                    {% if form.password2.errors %}
+                        <div class="error-message">{{ form.password2.errors|join:", " }}</div>
+                    {% endif %}
+                </div>
+
+                <button type="submit" class="auth-button">Register</button>
+            </form>
+            <p class="auth-link">Already have an account? <a href="{% url 'users:login' %}">Login</a></p>
+        </div>
+    </section>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const passwordInput = document.querySelector('#{{ form.password1.id_for_label }}');
+            passwordInput.setAttribute('title', 'Password requirements:\n- Can’t be too similar to your other personal information.\n- Must contain at least 8 characters.\n- Can’t be a commonly used password.\n- Can’t be entirely numeric.');
+        });
+    </script>
 {% endblock %}
