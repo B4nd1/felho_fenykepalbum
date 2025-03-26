@@ -4,6 +4,7 @@ from .forms import ImageUploadForm
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.utils.text import slugify
+from django.utils import timezone
 import os
 
 @login_required
@@ -23,7 +24,7 @@ def image_upload(request):
         if form.is_valid():
             image = form.save(commit=False)
             image.author = request.user
-            image.slug = slugify(image.title)
+            image.slug = slugify(f'{timezone.now()}_{image.author.username}_{image.title}')
             image.save()
             return redirect('images:list')
     else:
