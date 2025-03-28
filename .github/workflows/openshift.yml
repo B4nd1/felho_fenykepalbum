@@ -45,7 +45,7 @@ env:
 
   # 🖊️ EDIT to change the image registry settings.
   # Registries such as GHCR, Quay.io, and Docker Hub are supported.
-  IMAGE_REGISTRY: ghcr.io/${{ github.repository_owner }}
+  IMAGE_REGISTRY: ghcr.io
   IMAGE_REGISTRY_USER: ${{ github.actor }}
   IMAGE_REGISTRY_PASSWORD: ${{ github.token }}
 
@@ -149,6 +149,12 @@ jobs:
         # Otherwise, point this to your Dockerfile/Containerfile relative to the repository root.
         dockerfiles: |
           ./Dockerfile
+          
+    - name: Debug build outputs
+      run: |
+        echo "Image: ${{ steps.build-image.outputs.image }}"
+        echo "Tags: ${{ steps.build-image.outputs.tags }}"
+        echo "Full image path: ${{ env.IMAGE_REGISTRY }}/${{ steps.build-image.outputs.image }}:${{ steps.build-image.outputs.tags }}"
 
     # https://github.com/redhat-actions/push-to-registry#readme
     - name: Push to registry
