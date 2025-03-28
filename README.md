@@ -19,6 +19,7 @@ print("Hello World")
 * See details of the picture
 * Upload pictures
 * Delete pictures
+* 
 
 # Screenshots
 ![imagelist](assets/images_list.png)
