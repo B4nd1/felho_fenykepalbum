@@ -26,8 +26,11 @@ SECRET_KEY = 'django-insecure-h7uzy3vt@cjr&f6g49=y00&_*tp!m(mhb0s)r@2f+_9&y5uq-u
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
-
+# Fix for OpenShift Disallowed host
+ALLOWED_HOSTS = os.getenv('DJANGO_ALLOWED_HOSTS', '').split(',')
+# oc set env deployment/felhoalbum DJANGO_ALLOWED_HOSTS=felho-fenykepalbum-bandi2-dev.apps.rm2.thpm.p1.openshiftapps.com
+# Or
+ALLOWED_HOSTS = ['*']
 
 # Application definition
 
