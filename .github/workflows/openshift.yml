@@ -149,12 +149,6 @@ jobs:
         # Otherwise, point this to your Dockerfile/Containerfile relative to the repository root.
         dockerfiles: |
           ./Dockerfile
-          
-    - name: Debug build outputs
-      run: |
-        echo "Image: ${{ steps.build-image.outputs.image }}"
-        echo "Tags: ${{ steps.build-image.outputs.tags }}"
-        echo "Full image path: ${{ env.IMAGE_REGISTRY }}/${{ steps.build-image.outputs.image }}:${{ steps.build-image.outputs.tags }}"
 
     # https://github.com/redhat-actions/push-to-registry#readme
     - name: Push to registry
@@ -163,7 +157,7 @@ jobs:
       with:
         image: ${{ steps.build-image.outputs.image }}
         tags: ${{ steps.build-image.outputs.tags }}
-        registry: ${{ env.IMAGE_REGISTRY }}
+        registry: ${{ env.IMAGE_REGISTRY }}/${{ env.IMAGE_REGISTRY_USER }}
         username: ${{ env.IMAGE_REGISTRY_USER }}
         password: ${{ env.IMAGE_REGISTRY_PASSWORD }}
 
