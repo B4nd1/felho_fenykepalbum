@@ -16,7 +16,7 @@ print("Hello World")
 
 # Functions of the app 
 * Login, Register
-* See datails of the picture
+* See details of the picture
 * Upload pictures
 * Delete pictures
 

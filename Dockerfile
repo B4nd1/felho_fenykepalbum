@@ -17,4 +17,5 @@ ENV PYTHONUNBUFFERED=1
 RUN python manage.py collectstatic --noinput
 
 # Run app.py when the container launches
-CMD ["gunicorn", "--bind", "0.0.0.0:8000", "felho_fenykepalbum.wsgi:application"]
+#CMD ["gunicorn", "--bind", "0.0.0.0:8000", "felho_fenykepalbum.wsgi:application"]
+CMD ["bash", "start.sh"]
