@@ -32,7 +32,7 @@ ALLOWED_HOSTS = os.getenv('DJANGO_ALLOWED_HOSTS', '').split(',')
 # Or
 ALLOWED_HOSTS = ['*']
 
-CSRF_TRUSTED_ORIGINS = ['*']
+CSRF_TRUSTED_ORIGINS = ['https://*.openshiftapps.com']
 
 
 # Application definition
