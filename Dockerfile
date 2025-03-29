@@ -7,6 +7,8 @@ COPY . /app
 
 RUN pip install --no-cache-dir -r requirements.txt
 
+RUN rm -r media
+RUN rm db.sqlite3
 
 EXPOSE 8080
 
