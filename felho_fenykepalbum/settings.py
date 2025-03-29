@@ -90,7 +90,7 @@ DATABASES = {
         'NAME': os.getenv('POSTGRESQL_DATABASE', 'djangodb'),  # For OpenShift
         'USER': os.getenv('POSTGRESQL_USER', 'admin'),  # For OpenShift
         'PASSWORD': os.getenv('POSTGRESQL_PASSWORD', 'password'),  # For OpenShift
-        'HOST': os.getenv('POSTGRESQL_HOST', 'postgres'),  # Use OpenShift HOST for OpenShift databases
+        'HOST': os.getenv('POSTGRESQL_HOST', 'postgresql'),  # Use OpenShift HOST for OpenShift databases
         'PORT': os.getenv('POSTGRESQL_PORT', '5432'),  # Use OpenShift PORT if needed
     }
 }
