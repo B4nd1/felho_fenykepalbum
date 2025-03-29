@@ -87,11 +87,11 @@ WSGI_APPLICATION = 'felho_fenykepalbum.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.getenv('POSTGRESQL_DATABASE', 'djangodb'),  # For OpenShift
-        'USER': os.getenv('POSTGRESQL_USER', 'admin'),  # For OpenShift
-        'PASSWORD': os.getenv('POSTGRESQL_PASSWORD', 'password'),  # For OpenShift
-        'HOST': os.getenv('POSTGRESQL_HOST', 'postgresql'),  # Use OpenShift HOST for OpenShift databases
-        'PORT': os.getenv('POSTGRESQL_PORT', '5432'),  # Use OpenShift PORT if needed
+        'NAME': 'djangodb',
+        'USER': 'admin',
+        'PASSWORD': 'password',
+        'HOST': 'postgresql',
+        'PORT': '5432',
     }
 }
 
