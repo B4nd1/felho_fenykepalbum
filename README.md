@@ -1,5 +1,7 @@
 # Album
 
+[![Actions Status](https://github.com/B4nd1/cicd/workflows/Test,%20build%20and%20release/badge.svg)](https://github.com/B4nd1/cicd/actions)
+
 ### Install dependencies
 ```
 pip install -r requirements.txt
@@ -27,15 +29,10 @@ print("Hello World")
 
 
 # Useful Openshift commands
-
+```
 oc new-app https://github.com/B4nd1/felho_fenykepalbum --strategy=docker
-
 
 oc delete svc felhofenykepalbum
 oc delete bc felhofenykepalbum
 oc delete deployments.apps felhofenykepalbum
-
-oc expose service/felhofenykepalbum
-
-
-oc create route edge --service=openshift
+```
