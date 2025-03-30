@@ -1,0 +1,288 @@
+kind: DeploymentConfig
+apiVersion: apps.openshift.io/v1
+metadata:
+  annotations:
+    template.alpha.openshift.io/wait-for-ready: 'true'
+  resourceVersion: '565005242'
+  name: postgresql
+  uid: 52c54628-bc33-4cfd-bfdf-fa6c18829d80
+  creationTimestamp: '2025-03-30T10:15:07Z'
+  generation: 2
+  managedFields:
+    - manager: openshift-controller-manager
+      operation: Update
+      apiVersion: apps.openshift.io/v1
+      time: '2025-03-30T10:15:08Z'
+      fieldsType: FieldsV1
+      fieldsV1:
+        'f:metadata':
+          'f:annotations':
+            .: {}
+            'f:template.alpha.openshift.io/wait-for-ready': {}
+          'f:labels':
+            .: {}
+            'f:template': {}
+            'f:template.openshift.io/template-instance-owner': {}
+        'f:spec':
+          'f:replicas': {}
+          'f:selector':
+            .: {}
+            'f:name': {}
+          'f:strategy':
+            'f:activeDeadlineSeconds': {}
+            'f:recreateParams':
+              .: {}
+              'f:timeoutSeconds': {}
+            'f:type': {}
+          'f:template':
+            .: {}
+            'f:metadata':
+              .: {}
+              'f:creationTimestamp': {}
+              'f:labels':
+                .: {}
+                'f:name': {}
+            'f:spec':
+              .: {}
+              'f:containers':
+                .: {}
+                'k:{"name":"postgresql"}':
+                  'f:image': {}
+                  'f:volumeMounts':
+                    .: {}
+                    'k:{"mountPath":"/var/lib/pgsql/data"}':
+                      .: {}
+                      'f:mountPath': {}
+                      'f:name': {}
+                  'f:terminationMessagePolicy': {}
+                  .: {}
+                  'f:resources':
+                    .: {}
+                    'f:limits':
+                      .: {}
+                      'f:memory': {}
+                  'f:livenessProbe':
+                    .: {}
+                    'f:exec':
+                      .: {}
+                      'f:command': {}
+                    'f:failureThreshold': {}
+                    'f:initialDelaySeconds': {}
+                    'f:periodSeconds': {}
+                    'f:successThreshold': {}
+                    'f:timeoutSeconds': {}
+                  'f:env':
+                    .: {}
+                    'k:{"name":"POSTGRESQL_DATABASE"}':
+                      .: {}
+                      'f:name': {}
+                      'f:valueFrom':
+                        .: {}
+                        'f:secretKeyRef': {}
+                    'k:{"name":"POSTGRESQL_PASSWORD"}':
+                      .: {}
+                      'f:name': {}
+                      'f:valueFrom':
+                        .: {}
+                        'f:secretKeyRef': {}
+                    'k:{"name":"POSTGRESQL_USER"}':
+                      .: {}
+                      'f:name': {}
+                      'f:valueFrom':
+                        .: {}
+                        'f:secretKeyRef': {}
+                  'f:readinessProbe':
+                    .: {}
+                    'f:exec':
+                      .: {}
+                      'f:command': {}
+                    'f:failureThreshold': {}
+                    'f:initialDelaySeconds': {}
+                    'f:periodSeconds': {}
+                    'f:successThreshold': {}
+                    'f:timeoutSeconds': {}
+                  'f:securityContext':
+                    .: {}
+                    'f:capabilities': {}
+                    'f:privileged': {}
+                  'f:terminationMessagePath': {}
+                  'f:imagePullPolicy': {}
+                  'f:ports':
+                    .: {}
+                    'k:{"containerPort":5432,"protocol":"TCP"}':
+                      .: {}
+                      'f:containerPort': {}
+                      'f:protocol': {}
+                  'f:name': {}
+              'f:dnsPolicy': {}
+              'f:restartPolicy': {}
+              'f:schedulerName': {}
+              'f:securityContext': {}
+              'f:terminationGracePeriodSeconds': {}
+              'f:volumes':
+                .: {}
+                'k:{"name":"postgresql-data"}':
+                  .: {}
+                  'f:name': {}
+                  'f:persistentVolumeClaim':
+                    .: {}
+                    'f:claimName': {}
+          'f:triggers': {}
+    - manager: openshift-controller-manager
+      operation: Update
+      apiVersion: apps.openshift.io/v1
+      time: '2025-03-30T10:15:39Z'
+      fieldsType: FieldsV1
+      fieldsV1:
+        'f:status':
+          'f:updatedReplicas': {}
+          'f:readyReplicas': {}
+          'f:conditions':
+            .: {}
+            'k:{"type":"Available"}':
+              .: {}
+              'f:lastTransitionTime': {}
+              'f:lastUpdateTime': {}
+              'f:message': {}
+              'f:status': {}
+              'f:type': {}
+            'k:{"type":"Progressing"}':
+              .: {}
+              'f:lastTransitionTime': {}
+              'f:lastUpdateTime': {}
+              'f:message': {}
+              'f:reason': {}
+              'f:status': {}
+              'f:type': {}
+          'f:details':
+            .: {}
+            'f:causes': {}
+            'f:message': {}
+          'f:replicas': {}
+          'f:availableReplicas': {}
+          'f:observedGeneration': {}
+          'f:unavailableReplicas': {}
+          'f:latestVersion': {}
+      subresource: status
+  namespace: bandi2-dev
+  labels:
+    template: postgresql-persistent-template
+    template.openshift.io/template-instance-owner: 53e0bcf7-240d-4694-a21d-29e0443c5a59
+spec:
+  strategy:
+    type: Recreate
+    resources: {}
+    activeDeadlineSeconds: 21600
+    recreateParams:
+      timeoutSeconds: 600
+  triggers:
+    - type: ImageChange
+      imageChangeParams:
+        automatic: true
+        containerNames:
+          - postgresql
+        from:
+          kind: ImageStreamTag
+          name: 'postgresql:latest'
+          namespace: openshift
+    - type: ConfigChange
+  replicas: 1
+  revisionHistoryLimit: 10
+  test: false
+  selector:
+    name: postgresql
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        name: postgresql
+    spec:
+      volumes:
+        - name: postgresql-data
+          persistentVolumeClaim:
+            claimName: postgresql
+      containers:
+        - resources:
+            limits:
+              memory: 512Mi
+          readinessProbe:
+            exec:
+              command:
+                - /usr/libexec/check-container
+            initialDelaySeconds: 5
+            timeoutSeconds: 1
+            periodSeconds: 10
+            successThreshold: 1
+            failureThreshold: 3
+          terminationMessagePath: /dev/termination-log
+          name: postgresql
+          livenessProbe:
+            exec:
+              command:
+                - /usr/libexec/check-container
+                - '--live'
+            initialDelaySeconds: 120
+            timeoutSeconds: 10
+            periodSeconds: 10
+            successThreshold: 1
+            failureThreshold: 3
+          env:
+            - name: POSTGRESQL_USER
+              valueFrom:
+                secretKeyRef:
+                  name: postgresql
+                  key: database-user
+            - name: POSTGRESQL_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: postgresql
+                  key: database-password
+            - name: POSTGRESQL_DATABASE
+              valueFrom:
+                secretKeyRef:
+                  name: postgresql
+                  key: database-name
+          securityContext:
+            capabilities: {}
+            privileged: false
+          ports:
+            - containerPort: 5432
+              protocol: TCP
+          imagePullPolicy: IfNotPresent
+          volumeMounts:
+            - name: postgresql-data
+              mountPath: /var/lib/pgsql/data
+          terminationMessagePolicy: File
+          image: >-
+            registry.redhat.io/rhel8/postgresql-15@sha256:2a963d3d6968eecaafd6059999b44a3ea66c45dc490dba25239adf11176ccc69
+      restartPolicy: Always
+      terminationGracePeriodSeconds: 30
+      dnsPolicy: ClusterFirst
+      securityContext: {}
+      schedulerName: default-scheduler
+      imagePullSecrets: []
+  paused: false
+status:
+  observedGeneration: 2
+  details:
+    message: config change
+    causes:
+      - type: ConfigChange
+  availableReplicas: 1
+  unavailableReplicas: 0
+  latestVersion: 1
+  updatedReplicas: 1
+  conditions:
+    - type: Available
+      status: 'True'
+      lastUpdateTime: '2025-03-30T10:15:38Z'
+      lastTransitionTime: '2025-03-30T10:15:38Z'
+      message: Deployment config has minimum availability.
+    - type: Progressing
+      status: 'True'
+      lastUpdateTime: '2025-03-30T10:15:39Z'
+      lastTransitionTime: '2025-03-30T10:15:09Z'
+      reason: NewReplicationControllerAvailable
+      message: replication controller "postgresql-1" successfully rolled out
+  replicas: 1
+  readyReplicas: 1

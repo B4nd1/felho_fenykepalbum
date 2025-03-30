@@ -27,7 +27,6 @@ print("Hello World")
 
 
 # Useful Openshift commands
-oc new-app postgresql POSTGRESQL_USER=admin POSTGRESQL_DATABASE=djangodb POSTGRESQL_PASSWORD=password
 
 oc new-app https://github.com/B4nd1/felho_fenykepalbum --strategy=docker
 
